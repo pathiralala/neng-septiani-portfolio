@@ -1,0 +1,27 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "neng-septiani-portofolio.vercel.app"
+        }
+      ],
+      "destination": "/portfolio/",
+      "permanent": false
+    },
+    {
+      "source": "/",
+      "has": [
+        {
+          "type": "host",
+          "value": "neng-septiani-cv.vercel.app"
+        }
+      ],
+      "destination": "/cv/",
+      "permanent": false
+    }
+  ]
+}
