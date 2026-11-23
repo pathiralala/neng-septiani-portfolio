@@ -1,0 +1,1059 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>NENG SEPTIANI FADILATUL M., S.Ak — Portfolio</title>
+  <meta name="description" content="Portfolio of Neng Septiani Fadilatul Mi'rajiah, S.Ak: Accounting, Finance, dan Administrasi.">
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@300;400;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+  
+  <!-- GSAP 3.12.5 Core -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --bg-void: #030509;
+      --accent-blue: #d97706;
+      --accent-cyan: #f59e0b;
+      --stage-width: 1920px;
+      --stage-height: 1080px;
+    }
+
+    body {
+      background-color: var(--bg-void);
+      color: #f3f4f6;
+      font-family: 'Plus Jakarta Sans', 'Poppins', -apple-system, sans-serif;
+      overflow: hidden;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+      -webkit-user-select: none;
+    }
+
+    /* Living Ambient Aurora */
+    #ambientAurora {
+      position: fixed;
+      inset: 0;
+      width: 100vw;
+      height: 100vh;
+      border-radius: 0;
+      background: 
+        radial-gradient(circle 850px at 78% 22%, rgba(217, 119, 6, 0.18), transparent 70%),
+        radial-gradient(circle 950px at 18% 78%, rgba(180, 83, 9, 0.14), transparent 70%),
+        radial-gradient(circle 750px at 50% 50%, rgba(120, 53, 15, 0.10), transparent 75%);
+      filter: blur(80px);
+      pointer-events: none;
+      z-index: 1;
+      opacity: 0.85;
+      will-change: filter, transform;
+      transition: filter 0.8s ease;
+    }
+
+    /* Main Viewport Container */
+    #viewport {
+      position: relative;
+      width: 100vw;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 2;
+      overflow: hidden;
+    }
+
+    /* Scaled 1920x1080 Unified Stage - 100% Pure Full Bleed & Frameless */
+    #stageContainer {
+      position: absolute;
+      width: var(--stage-width);
+      height: var(--stage-height);
+      transform-origin: center center;
+      box-shadow: none !important;
+      border: none !important;
+      background: transparent !important;
+      opacity: 0;
+      visibility: hidden;
+      transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    /* All Slide Panes: 100% Seamless Bleed 1920x1080 Widescreen Stage */
+    .slide-pane {
+      position: absolute !important;
+      top: 0 !important;
+      left: 0 !important;
+      width: 1920px !important;
+      height: 1080px !important;
+      margin: 0 !important;
+      overflow: hidden !important;
+      background: #030509 !important;
+      box-shadow: none !important;
+      border: none !important;
+      border-radius: 0 !important;
+      opacity: 1;
+      will-change: transform, opacity;
+    }
+
+    .slide-pane img.base-slide-img {
+      position: absolute;
+      inset: 0;
+      width: 1920px;
+      height: 1080px;
+      object-fit: contain;
+      pointer-events: none;
+      display: block;
+    }
+
+    /* --- ULTRA-PROMINENT NEXT & PREVIOUS BUTTONS (HIGH VISIBILITY & ERGONOMICS) --- */
+    .btn-nav-prev, .btn-nav-next, .nav-prev, .nav-next, .next-page {
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      letter-spacing: 0.05em !important;
+      color: #e2e8f0 !important;
+      background: rgba(15, 23, 42, 0.75) !important;
+      border: 1px solid rgba(245, 158, 11, 0.4) !important;
+      padding: 10px 22px 10px 18px !important;
+      border-radius: 9999px !important;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px rgba(245, 158, 11, 0.2) !important;
+      backdrop-filter: blur(12px) !important;
+      -webkit-backdrop-filter: blur(12px) !important;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+      cursor: pointer !important;
+      user-select: none !important;
+      z-index: 50 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 6px !important;
+    }
+
+    .btn-nav-prev:hover, .btn-nav-next:hover, .nav-prev:hover, .nav-next:hover, .next-page:hover {
+      background: rgba(180, 83, 9, 0.85) !important;
+      border-color: #fbbf24 !important;
+      color: #ffffff !important;
+      transform: translateY(-3px) scale(1.05) !important;
+      box-shadow: 0 12px 30px rgba(0, 0, 0, 0.7), 0 0 25px rgba(245, 158, 11, 0.45) !important;
+    }
+
+    .btn-nav-prev:active, .btn-nav-next:active, .nav-prev:active, .nav-next:active, .next-page:active {
+      transform: scale(0.96) !important;
+    }
+
+    .btn-nav-prev .circle, .btn-nav-next .circle, .nav-prev .circle, .nav-next .circle, .next-page .circle {
+      width: 36px !important;
+      height: 36px !important;
+      border-radius: 50% !important;
+      background: rgba(245, 158, 11, 0.2) !important;
+      border: 1.5px solid #fbbf24 !important;
+      color: #fbbf24 !important;
+      font-size: 18px !important;
+      font-weight: 700 !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      justify-content: center !important;
+      margin-left: 8px !important;
+      margin-right: 8px !important;
+    }
+
+    .footer {
+      position: absolute !important;
+      bottom: 35px !important;
+      left: 100px !important;
+      right: 100px !important;
+      display: flex !important;
+      justify-content: space-between !important;
+      align-items: center !important;
+      z-index: 30 !important;
+    }
+
+    /* Floating Deck Controls (Canva / Pitch style) */
+    #deckToolbar {
+      position: fixed;
+      bottom: 24px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      border-radius: 9999px;
+      background: rgba(10, 14, 22, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 15px 35px rgba(0, 0, 0, 0.6), 0 0 20px rgba(245, 158, 11, 0.15);
+      transition: transform 0.3s ease, opacity 0.3s ease;
+    }
+
+    .dock-btn {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.04);
+      color: #e2e8f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .dock-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      border-color: rgba(255, 255, 255, 0.3);
+      color: #ffffff;
+      transform: scale(1.08);
+    }
+
+    .dock-btn:active {
+      transform: scale(0.95);
+    }
+
+    .dock-btn:disabled {
+      opacity: 0.25;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    .slide-counter {
+      padding: 0 14px;
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 13px;
+      font-weight: 600;
+      color: #cbd5e1;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border-radius: 8px;
+      height: 34px;
+      transition: background 0.2s;
+    }
+
+    .slide-counter:hover {
+      background: rgba(255, 255, 255, 0.08);
+      color: #fbbf24;
+    }
+
+    .divider-line {
+      width: 1px;
+      height: 20px;
+      background: rgba(255, 255, 255, 0.1);
+      margin: 0 2px;
+    }
+
+    /* Thumbnail Drawer */
+    #thumbnailDrawer {
+      position: fixed;
+      inset: 0;
+      z-index: 200;
+      background: rgba(3, 5, 9, 0.94);
+      backdrop-filter: blur(25px);
+      -webkit-backdrop-filter: blur(25px);
+      display: flex;
+      flex-direction: column;
+      padding: 40px 60px;
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    #thumbnailDrawer.open {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+
+    .drawer-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 24px;
+    }
+
+    .drawer-title {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .drawer-close {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .drawer-close:hover {
+      background: rgba(255, 255, 255, 0.15);
+      transform: scale(1.05);
+    }
+
+    .thumbnail-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 20px;
+      overflow-y: auto;
+      padding-right: 8px;
+    }
+
+    .thumb-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      border-radius: 12px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .thumb-card:hover {
+      transform: translateY(-4px) scale(1.02);
+      border-color: #fbbf24;
+      box-shadow: 0 10px 25px rgba(245, 158, 11, 0.25);
+    }
+
+    .thumb-card.active-thumb {
+      border-color: #fbbf24;
+      box-shadow: 0 0 20px rgba(245, 158, 11, 0.4);
+      background: rgba(245, 158, 11, 0.08);
+    }
+
+    .thumb-preview {
+      width: 100%;
+      aspect-ratio: 16/9;
+      background: #000000;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .thumb-preview img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .thumb-info {
+      padding: 10px 14px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .thumb-num {
+      font-family: 'JetBrains Mono', monospace;
+      font-size: 12px;
+      font-weight: 700;
+      color: #fbbf24;
+    }
+
+    .thumb-label {
+      font-size: 13px;
+      font-weight: 500;
+      color: #cbd5e1;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* Elegant Download PDF Pill in Bottom Dock */
+    .dock-btn-pdf-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 14px;
+      border-radius: 9999px;
+      background: rgba(245, 158, 11, 0.16);
+      border: 1px solid rgba(245, 158, 11, 0.4);
+      color: #fbbf24;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 12.5px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .dock-btn-pdf-pill:hover {
+      background: rgba(245, 158, 11, 0.3);
+      border-color: #fbbf24;
+      color: #ffffff;
+      box-shadow: 0 0 15px rgba(245, 158, 11, 0.4);
+      transform: translateY(-1px);
+    }
+
+    .dock-btn-pdf-pill:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    /* Persistent Floating Top-Right PDF Download */
+    .top-pdf-btn {
+      position: fixed;
+      top: 24px;
+      right: 28px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      background: rgba(10, 14, 22, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(245, 158, 11, 0.35);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 20px rgba(245, 158, 11, 0.15);
+      color: #fbbf24;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      cursor: pointer;
+    }
+
+    .top-pdf-btn:hover {
+      background: rgba(245, 158, 11, 0.25);
+      border-color: #fbbf24;
+      color: #ffffff;
+      box-shadow: 0 12px 30px -5px rgba(0, 0, 0, 0.6), 0 0 25px rgba(245, 158, 11, 0.35);
+      transform: translateY(-2px);
+    }
+
+    /* Top Left CV Shortcut */
+    .top-cv-btn {
+      position: fixed;
+      top: 24px;
+      left: 28px;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 18px;
+      border-radius: 9999px;
+      background: rgba(10, 14, 22, 0.85);
+      backdrop-filter: blur(20px);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+      color: #e2e8f0;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.25s;
+    }
+
+    .top-cv-btn:hover {
+      background: rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+      transform: translateY(-2px);
+    }
+
+    /* --- INSTAGRAM CENTER OVERLAY & YOUTUBE EXPAND BUTTON --- */
+    #mobileExpandBtn {
+      position: fixed;
+      z-index: 99999;
+      padding: 10px 16px 10px 12px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(245, 158, 11, 0.5);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      color: #ffffff;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 16px rgba(245, 158, 11, 0.3);
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    #mobileExpandBtn:active {
+      transform: scale(0.95);
+      background: rgba(180, 83, 9, 0.8);
+    }
+    #mobileExpandBtn svg {
+      width: 18px;
+      height: 18px;
+      stroke-width: 2.4;
+      color: #fbbf24;
+    }
+
+    #btnExitVirtualRotate {
+      position: fixed;
+      top: 18px;
+      right: 18px;
+      z-index: 100000;
+      display: none;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 18px;
+      border-radius: 9999px;
+      background: rgba(15, 23, 42, 0.92);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    #btnExitVirtualRotate:active {
+      transform: scale(0.95);
+    }
+
+    /* --- ONE-SHOT CINEMATIC ROTATE MOTION --- */
+    #igCenterOverlay {
+      display: none !important;
+    }
+
+    #igCenterOverlay.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    #igCenterOverlay.fade-out {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    .reel-motion-unit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      transform-origin: center center;
+      will-change: transform;
+    }
+
+    #igCenterOverlay.active .reel-motion-unit {
+      animation: reelOneShotRotate 1.5s cubic-bezier(0.7, 0, 0.3, 1) forwards;
+    }
+
+    @keyframes reelOneShotRotate {
+      0%, 15% { transform: rotate(0deg); }
+      75%, 100% { transform: rotate(90deg); }
+    }
+
+    .reel-phone-icon {
+      width: 44px;
+      height: 74px;
+      flex-shrink: 0;
+      filter: drop-shadow(0 4px 14px rgba(0,0,0,0.8));
+    }
+
+    .reel-motion-typography {
+      display: flex;
+      flex-direction: column;
+      font-family: 'Montserrat', sans-serif;
+      font-size: 17px;
+      font-weight: 900;
+      line-height: 1.05;
+      letter-spacing: 1.5px;
+      color: #ffffff;
+      text-transform: uppercase;
+      text-align: left;
+      filter: drop-shadow(0 4px 14px rgba(0,0,0,0.8));
+    }
+
+    @media (max-width: 768px) {
+      #deckToolbar { bottom: 16px; padding: 6px 12px; }
+      .thumbnail-grid { grid-template-columns: repeat(2, 1fr); gap: 14px; }
+      #thumbnailDrawer { padding: 24px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Dynamic fluid ambient aurora orb -->
+  <div id="ambientAurora"></div>
+
+  <!-- Persistent Top Shortcuts -->
+  <a href="/cv/" class="top-cv-btn" title="Buka CV">
+    <i data-lucide="file-text" style="width: 16px; height: 16px;"></i>
+    <span>Lihat CV</span>
+  </a>
+
+  <a href="/files/portfolio.pdf" download="PORTOFOLIO_NENG_SEPTIANI_FADILATUL_M.pdf" id="topPdfBtn" class="top-pdf-btn" title="Unduh Portfolio Deck PDF">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+    <span>Download PDF</span>
+  </a>
+
+  <!-- Mobile Floating Exit Rotate Button -->
+  <button id="btnExitVirtualRotate" onclick="toggleVirtualRotate(false);" title="Kembali ke Mode Normal (Layar Tegak)">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><polyline points="4 14 10 14 10 20"></polyline><polyline points="20 10 14 10 14 4"></polyline><line x1="14" y1="10" x2="21" y2="3"></line><line x1="3" y1="21" x2="10" y2="14"></line></svg>
+    <span>Tegak Normal</span>
+  </button>
+
+  <!-- Main Viewport Stage -->
+  <div id="viewport">
+    <div id="stageContainer">
+
+      <!-- SLIDE 01 -->
+      <div class="slide-pane" id="slide-01" data-index="1" data-title="Cover & Executive Profile" style="display: block;">
+        <img class="base-slide-img" src="slide_1.png" alt="Slide 01">
+        <div class="footer">
+          <div></div>
+          <div class="next-page btn-nav-next" onclick="nextSlide()" role="button" tabindex="0">
+            <span>Next</span>
+            <span class="circle">→</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- SLIDE 02 -->
+      <div class="slide-pane" id="slide-02" data-index="2" data-title="Profil & Kompetensi" style="display: none;">
+        <img class="base-slide-img" src="slide_2.png" alt="Slide 02">
+        <footer class="footer">
+          <span class="nav-prev btn-nav-prev" onclick="prevSlide()"><i class="circle">←</i> Previous</span>
+          <span class="nav-next btn-nav-next" onclick="nextSlide()">Next <i class="circle">→</i></span>
+        </footer>
+      </div>
+
+      <!-- SLIDE 03 -->
+      <div class="slide-pane" id="slide-03" data-index="3" data-title="Pendidikan & Latar Belakang" style="display: none;">
+        <img class="base-slide-img" src="slide_3.png" alt="Slide 03">
+        <footer class="footer">
+          <span class="nav-prev btn-nav-prev" onclick="prevSlide()"><i class="circle">←</i> Previous</span>
+          <span class="nav-next btn-nav-next" onclick="nextSlide()">Next <i class="circle">→</i></span>
+        </footer>
+      </div>
+
+      <!-- SLIDE 04 -->
+      <div class="slide-pane" id="slide-04" data-index="4" data-title="Pengalaman Kerja Utama" style="display: none;">
+        <img class="base-slide-img" src="slide_4.png" alt="Slide 04">
+        <footer class="footer">
+          <span class="nav-prev btn-nav-prev" onclick="prevSlide()"><i class="circle">←</i> Previous</span>
+          <span class="nav-next btn-nav-next" onclick="nextSlide()">Next <i class="circle">→</i></span>
+        </footer>
+      </div>
+
+      <!-- SLIDE 05 -->
+      <div class="slide-pane" id="slide-05" data-index="5" data-title="Relawan Pajak DJP" style="display: none;">
+        <img class="base-slide-img" src="slide_5.png" alt="Slide 05">
+        <footer class="footer">
+          <span class="nav-prev btn-nav-prev" onclick="prevSlide()"><i class="circle">←</i> Previous</span>
+          <span class="nav-next btn-nav-next" onclick="nextSlide()">Next <i class="circle">→</i></span>
+        </footer>
+      </div>
+
+      <!-- SLIDE 06 -->
+      <div class="slide-pane" id="slide-06" data-index="6" data-title="Organisasi & Pelayanan Publik" style="display: none;">
+        <img class="base-slide-img" src="slide_6.png" alt="Slide 06">
+        <footer class="footer">
+          <span class="nav-prev btn-nav-prev" onclick="prevSlide()"><i class="circle">←</i> Previous</span>
+          <span class="nav-next btn-nav-next" onclick="nextSlide()">Next <i class="circle">→</i></span>
+        </footer>
+      </div>
+
+      <!-- SLIDE 07 -->
+      <div class="slide-pane" id="slide-07" data-index="7" data-title="Sertifikasi & Penghargaan" style="display: none;">
+        <img class="base-slide-img" src="slide_7.png" alt="Slide 07">
+        <footer class="footer">
+          <span class="nav-prev btn-nav-prev" onclick="prevSlide()"><i class="circle">←</i> Previous</span>
+          <span class="nav-next btn-nav-next" onclick="nextSlide()">Next <i class="circle">→</i></span>
+        </footer>
+      </div>
+
+      <!-- SLIDE 08 -->
+      <div class="slide-pane" id="slide-08" data-index="8" data-title="Kontak & Penutup" style="display: none;">
+        <img class="base-slide-img" src="slide_8.png" alt="Slide 08">
+        <footer class="footer">
+          <span class="nav-prev btn-nav-prev" onclick="prevSlide()"><i class="circle">←</i> Previous</span>
+          <span class="nav-next btn-nav-next" onclick="goToSlide(1)">Awal <i class="circle">↺</i></span>
+        </footer>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Fullscreen Expand Button at Bottom-Right -->
+  <button id="mobileExpandBtn" onclick="toggleVirtualRotate(true);" title="Layar Penuh (Fullscreen)">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="15 3 21 3 21 9"></polyline>
+      <polyline points="9 21 3 21 3 15"></polyline>
+      <line x1="21" y1="3" x2="14" y2="10"></line>
+      <line x1="3" y1="21" x2="10" y2="14"></line>
+    </svg>
+    <span>Layar Penuh</span>
+  </button>
+
+  <!-- One-Shot Orientation Motion Graphic -->
+  <aside id="igCenterOverlay" aria-hidden="true">
+    <div class="reel-motion-unit">
+      <svg class="reel-phone-icon" viewBox="0 0 40 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="2" y="2" width="36" height="64" rx="7" stroke="#ffffff" stroke-width="3" fill="none" />
+        <line x1="14" y1="8" x2="26" y2="8" stroke="#ffffff" stroke-width="2.5" stroke-linecap="round" />
+        <circle cx="20" cy="57" r="3" stroke="#ffffff" stroke-width="2" />
+      </svg>
+      <div class="reel-motion-typography">
+        <span>PUTAR</span>
+        <span>LAYAR</span>
+        <span>HP</span>
+        <span>ANDA</span>
+      </div>
+    </div>
+  </aside>
+
+  <!-- Deck Toolbar (Canva / Pitch style) -->
+  <nav id="deckToolbar" aria-label="Deck Controls">
+    <button class="dock-btn" id="btnPrev" onclick="prevSlide();" title="Slide Sebelumnya (←)">
+      <i data-lucide="chevron-left" style="width: 18px; height: 18px;"></i>
+    </button>
+
+    <div class="slide-counter" id="slideCounter" onclick="toggleDrawer();" title="Buka Daftar Slide (M / T)">
+      <span id="currentSlideNum">01</span>
+      <span style="color: #64748b;">/</span>
+      <span style="color: #94a3b8;">08</span>
+    </div>
+
+    <button class="dock-btn" id="btnNext" onclick="nextSlide();" title="Slide Berikutnya (→)">
+      <i data-lucide="chevron-right" style="width: 18px; height: 18px;"></i>
+    </button>
+
+    <div class="divider-line"></div>
+
+    <button class="dock-btn" id="btnGrid" onclick="toggleDrawer();" title="Semua Slide (Overview)">
+      <i data-lucide="layout-grid" style="width: 16px; height: 16px;"></i>
+    </button>
+
+    <a href="/files/portfolio.pdf" download="PORTOFOLIO_NENG_SEPTIANI_FADILATUL_M.pdf" class="dock-btn-pdf-pill" id="dockBtnPdf" title="Download Portfolio Deck (PDF)">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+      <span>Download PDF</span>
+    </a>
+  </nav>
+
+  <!-- Slide Thumbnail Drawer -->
+  <div id="thumbnailDrawer">
+    <div class="drawer-header">
+      <div class="drawer-title">
+        <i data-lucide="presentation" style="width: 22px; height: 22px; color: #fbbf24;"></i>
+        <span>Semua Slide Portofolio (8 Slide)</span>
+      </div>
+      <button class="drawer-close" onclick="toggleDrawer();" title="Tutup (Esc)">
+        <i data-lucide="x" style="width: 20px; height: 20px;"></i>
+      </button>
+    </div>
+
+    <div class="thumbnail-grid" id="thumbGrid"></div>
+  </div>
+
+  <script>
+    lucide.createIcons();
+
+    const TOTAL_SLIDES = 8;
+    let currentSlideIndex = 1;
+    let isTransitioning = false;
+
+    const stageContainer = document.getElementById('stageContainer');
+    const slideCounter = document.getElementById('currentSlideNum');
+    const btnPrev = document.getElementById('btnPrev');
+    const btnNext = document.getElementById('btnNext');
+    const drawer = document.getElementById('thumbnailDrawer');
+    const thumbGrid = document.getElementById('thumbGrid');
+    const ambientAurora = document.getElementById('ambientAurora');
+
+    const thumbData = [
+      { index: 1, title: 'Cover & Executive Profile', img: 'slide_1.png', num: '01' },
+      { index: 2, title: 'Profil & Kompetensi', img: 'slide_2.png', num: '02' },
+      { index: 3, title: 'Pendidikan & Latar Belakang', img: 'slide_3.png', num: '03' },
+      { index: 4, title: 'Pengalaman Kerja Utama', img: 'slide_4.png', num: '04' },
+      { index: 5, title: 'Relawan Pajak DJP', img: 'slide_5.png', num: '05' },
+      { index: 6, title: 'Organisasi & Pelayanan Publik', img: 'slide_6.png', num: '06' },
+      { index: 7, title: 'Sertifikasi & Penghargaan', img: 'slide_7.png', num: '07' },
+      { index: 8, title: 'Kontak & Penutup', img: 'slide_8.png', num: '08' }
+    ];
+
+    let isVirtualRotated = false;
+    let overlayDismissed = false;
+
+    function resizeStage() {
+      const vw = window.innerWidth;
+      const vh = window.innerHeight;
+      const stageW = 1920;
+      const stageH = 1080;
+
+      const isPortraitScreen = vh > vw;
+      const overlayEl = document.getElementById('igCenterOverlay');
+      const exitBtn = document.getElementById('btnExitVirtualRotate');
+      const deckToolbar = document.getElementById('deckToolbar');
+      const expandBtn = document.getElementById('mobileExpandBtn');
+
+      if (isVirtualRotated && isPortraitScreen) {
+        const scale = Math.min(vh / stageW, vw / stageH);
+        stageContainer.style.transform = `rotate(90deg) scale(${scale})`;
+
+        if (exitBtn) exitBtn.style.display = 'flex';
+        if (expandBtn) expandBtn.style.display = 'none';
+        if (overlayEl) overlayEl.classList.remove('active');
+        if (deckToolbar) deckToolbar.style.opacity = '0.2';
+      } else {
+        const scale = Math.min(vw / stageW, vh / stageH);
+        stageContainer.style.transform = `scale(${scale})`;
+
+        if (exitBtn) exitBtn.style.display = 'none';
+        if (deckToolbar) deckToolbar.style.opacity = '1';
+
+        if (isPortraitScreen && vw < 850) {
+          if (expandBtn) {
+            expandBtn.style.display = 'flex';
+            expandBtn.style.right = '20px';
+            expandBtn.style.bottom = '90px';
+          }
+
+          if (!overlayDismissed && overlayEl) {
+            overlayEl.classList.remove('fade-out');
+            overlayEl.classList.add('active');
+
+            clearTimeout(window._igOverlayTimeout);
+            window._igOverlayTimeout = setTimeout(() => {
+              dismissOverlay();
+            }, 1800);
+          }
+        } else {
+          if (expandBtn) expandBtn.style.display = 'none';
+          if (overlayEl) overlayEl.classList.remove('active');
+        }
+      }
+    }
+
+    function toggleVirtualRotate(enable) {
+      isVirtualRotated = enable;
+      dismissOverlay();
+      resizeStage();
+    }
+
+    function dismissOverlay() {
+      overlayDismissed = true;
+      const overlayEl = document.getElementById('igCenterOverlay');
+      if (overlayEl) {
+        overlayEl.classList.add('fade-out');
+        setTimeout(() => {
+          overlayEl.classList.remove('active');
+        }, 500);
+      }
+    }
+
+    window.addEventListener('resize', resizeStage);
+    window.addEventListener('orientationchange', () => {
+      if (window.innerWidth > window.innerHeight) {
+        isVirtualRotated = false;
+      }
+      setTimeout(resizeStage, 150);
+    });
+
+    window.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        stageContainer.style.visibility = 'visible';
+        gsap.to(stageContainer, { opacity: 1, duration: 0.35, ease: "power2.out" });
+        resizeStage();
+      }, 100);
+    });
+
+    function goToSlide(targetNum, direction = null) {
+      if (targetNum < 1 || targetNum > TOTAL_SLIDES) return;
+      if (targetNum === currentSlideIndex) return;
+      if (isTransitioning) return;
+
+      isTransitioning = true;
+      const isForward = direction ? (direction === 'next') : (targetNum > currentSlideIndex);
+
+      const fromSlide = document.getElementById(`slide-${String(currentSlideIndex).padStart(2, '0')}`);
+      const toSlide = document.getElementById(`slide-${String(targetNum).padStart(2, '0')}`);
+
+      if (!fromSlide || !toSlide) {
+        isTransitioning = false;
+        return;
+      }
+
+      fromSlide.style.display = 'none';
+      fromSlide.style.zIndex = '1';
+
+      toSlide.style.display = 'block';
+      toSlide.style.zIndex = '2';
+      toSlide.style.opacity = '1';
+
+      const tl = gsap.timeline({
+        onComplete: () => {
+          isTransitioning = false;
+        }
+      });
+
+      tl.fromTo(toSlide, 
+        { y: isForward ? 45 : -45, opacity: 1 }, 
+        { y: 0, opacity: 1, duration: 0.42, ease: "power3.out" }, 
+        0
+      );
+
+      if (ambientAurora) {
+        const hueShift = (targetNum * 20) % 60 - 30;
+        const shiftX = ((targetNum % 3) - 1) * 35;
+        const shiftY = ((targetNum % 2) - 0.5) * 30;
+        gsap.to(ambientAurora, {
+          x: shiftX,
+          y: shiftY,
+          opacity: 0.85,
+          filter: `blur(80px) hue-rotate(${hueShift}deg)`,
+          duration: 0.8,
+          ease: "power2.out"
+        });
+      }
+
+      currentSlideIndex = targetNum;
+      updateUI();
+    }
+
+    function nextSlide() {
+      if (currentSlideIndex < TOTAL_SLIDES) {
+        goToSlide(currentSlideIndex + 1, 'next');
+      }
+    }
+
+    function prevSlide() {
+      if (currentSlideIndex > 1) {
+        goToSlide(currentSlideIndex - 1, 'prev');
+      }
+    }
+
+    window.nextSlide = nextSlide;
+    window.prevSlide = prevSlide;
+    window.goToSlide = goToSlide;
+
+    function updateUI() {
+      const numSpan = document.getElementById('currentSlideNum');
+      if (numSpan) numSpan.textContent = String(currentSlideIndex).padStart(2, '0');
+      if (btnPrev) btnPrev.disabled = (currentSlideIndex === 1);
+      if (btnNext) btnNext.disabled = (currentSlideIndex === TOTAL_SLIDES);
+
+      document.querySelectorAll('.thumb-card').forEach((card, idx) => {
+        if (idx + 1 === currentSlideIndex) {
+          card.classList.add('active-thumb');
+        } else {
+          card.classList.remove('active-thumb');
+        }
+      });
+    }
+
+    function handleDeckKey(e) {
+      if (drawer.classList.contains('open')) {
+        if (e.key === 'Escape') toggleDrawer();
+        return;
+      }
+
+      if (e.key === 'ArrowRight' || e.key === ' ' || e.key === 'PageDown' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        nextSlide();
+      } else if (e.key === 'ArrowLeft' || e.key === 'PageUp' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        prevSlide();
+      } else if (e.key === 'm' || e.key === 'M' || e.key === 't' || e.key === 'T') {
+        toggleDrawer();
+      }
+    }
+
+    window.addEventListener('keydown', handleDeckKey);
+
+    let touchStartX = 0;
+    let touchStartY = 0;
+
+    window.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+      touchStartY = e.changedTouches[0].screenY;
+    }, { passive: true });
+
+    window.addEventListener('touchend', (e) => {
+      const touchEndX = e.changedTouches[0].screenX;
+      const touchEndY = e.changedTouches[0].screenY;
+      const rawDiffX = touchEndX - touchStartX;
+      const rawDiffY = touchEndY - touchStartY;
+
+      let effectiveDiff = 0;
+
+      if (isVirtualRotated) {
+        if (Math.abs(rawDiffY) >= Math.abs(rawDiffX) && Math.abs(rawDiffY) > 40) {
+          effectiveDiff = -rawDiffY;
+        } else if (Math.abs(rawDiffX) > 40) {
+          effectiveDiff = rawDiffX;
+        }
+      } else {
+        if (Math.abs(rawDiffX) > Math.abs(rawDiffY) && Math.abs(rawDiffX) > 40) {
+          effectiveDiff = rawDiffX;
+        }
+      }
+
+      if (effectiveDiff !== 0) {
+        if (effectiveDiff < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+    }, { passive: true });
+
+    function buildThumbnails() {
+      thumbGrid.innerHTML = '';
+
+      thumbData.forEach((item) => {
+        const card = document.createElement('div');
+        card.className = `thumb-card ${item.index === currentSlideIndex ? 'active-thumb' : ''}`;
+        card.onclick = () => {
+          goToSlide(item.index);
+          toggleDrawer();
+        };
+
+        card.innerHTML = `
+          <div class="thumb-preview">
+            <img src="${item.img}" alt="${item.title}">
+          </div>
+          <div class="thumb-info">
+            <span class="thumb-num">${item.num}</span>
+            <span class="thumb-label">${item.title}</span>
+          </div>
+        `;
+        thumbGrid.appendChild(card);
+      });
+    }
+
+    function toggleDrawer() {
+      drawer.classList.toggle('open');
+      if (drawer.classList.contains('open')) {
+        buildThumbnails();
+      }
+    }
+
+    buildThumbnails();
+    updateUI();
+    resizeStage();
+  </script>
+</body>
+</html>

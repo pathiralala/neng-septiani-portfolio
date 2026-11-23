@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Curriculum Vitae - Neng Septiani Fadilatul Mi'rajiah, S.Ak</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { font-family: 'Plus Jakarta Sans', sans-serif; }
+    .cv-shadow {
+      box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(255, 255, 255, 0.08);
+    }
+  </style>
+</head>
+<body class="bg-[#0c0d0e] text-stone-200 min-h-screen flex flex-col">
+
+  <!-- Header Sticky Minimalis Glass -->
+  <header class="sticky top-0 z-50 bg-[#141517]/90 backdrop-blur-md border-b border-white/10 px-4 py-3.5 shadow-lg">
+    <div class="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
+      <div class="flex items-center gap-3">
+        <a href="/" class="text-stone-400 hover:text-white transition p-1">
+          <i class="fa-solid fa-arrow-left text-sm"></i>
+        </a>
+        <div>
+          <h1 class="text-sm sm:text-base font-bold text-white tracking-wide">NENG SEPTIANI FADILATUL MI'RAJIAH, S.Ak</h1>
+          <p class="text-[11px] text-amber-500 font-medium">Curriculum Vitae • S1 Akuntansi (IPK 3.95)</p>
+        </div>
+      </div>
+
+      <div class="flex items-center gap-2">
+        <a href="/portfolio/" class="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs font-semibold text-stone-300 bg-stone-800/80 hover:bg-stone-700 hover:text-white rounded-lg border border-white/10 transition">
+          <i class="fa-solid fa-folder-open text-amber-400"></i>
+          Lihat Portofolio
+        </a>
+        <a href="/files/cv.pdf" download="CV_NENG_SEPTIANI_FADILATUL_M.pdf" class="inline-flex items-center gap-1.5 px-4 py-1.5 text-xs font-bold text-stone-900 bg-gradient-to-r from-amber-400 to-amber-500 hover:from-amber-300 hover:to-amber-400 rounded-lg shadow-md transition transform active:scale-95">
+          <i class="fa-solid fa-download"></i>
+          Download CV (PDF)
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main CV Visual Display -->
+  <main class="flex-1 max-w-4xl w-full mx-auto p-4 sm:p-6 flex flex-col items-center">
+    
+    <div class="w-full flex items-center justify-between mb-4 px-1">
+      <div class="text-xs font-medium text-stone-400 flex items-center gap-2">
+        <span class="inline-block w-2 h-2 rounded-full bg-emerald-400 animate-pulse"></span>
+        <span>Dokumen Resume Resmi</span>
+      </div>
+      <a href="/files/cv.pdf" target="_blank" class="text-xs text-amber-400 hover:underline flex items-center gap-1">
+        Buka File Asli PDF <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+      </a>
+    </div>
+
+    <!-- CV Visual Image Container (Instant Load on All Devices / Mobile) -->
+    <div class="w-full max-w-2xl bg-white rounded-2xl overflow-hidden cv-shadow border border-white/10">
+      <img src="cv_page_1.png" alt="Curriculum Vitae Neng Septiani" class="w-full h-auto object-contain block">
+    </div>
+
+    <!-- Secondary Action Bar -->
+    <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+      <a href="/files/cv.pdf" download="CV_NENG_SEPTIANI_FADILATUL_M.pdf" class="px-5 py-2.5 rounded-xl bg-amber-500 hover:bg-amber-400 text-stone-950 font-bold text-xs shadow-lg transition flex items-center gap-2">
+        <i class="fa-solid fa-download"></i> Download CV (PDF)
+      </a>
+      <a href="https://wa.me/6281281169686" target="_blank" class="px-5 py-2.5 rounded-xl bg-stone-800 hover:bg-stone-700 text-white font-semibold text-xs border border-white/10 transition flex items-center gap-2">
+        <i class="fa-brands fa-whatsapp text-emerald-400"></i> Hubungi WhatsApp
+      </a>
+    </div>
+
+  </main>
+
+  <footer class="text-center py-4 text-xs text-stone-600 border-t border-white/5">
+    © 2026 Neng Septiani Fadilatul Mi'rajiah, S.Ak • Pandeglang, Banten
+  </footer>
+
+</body>
+</html>
